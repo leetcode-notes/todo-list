@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');    // pull information from HTML POST
 var methodOverride = require('method-override');    // simulate DELETE and PUT
 
 var ip = '127.0.0.1';
-var port = process.env.NODEJS_PORT || 5000;
+var port = process.env.PORT || 5000;
 
 // configuration =========================
 mongoose.connect(process.env.MONGODB_DB_URL);
