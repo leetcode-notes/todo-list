@@ -1,0 +1,31 @@
+md-whiteframe {
+    padding: 8px;
+}
+
+a {
+    color: #00796b;
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: #e0f2f1;
+    text-decoration: underline;
+}
+
+.doc {
+    max-width: 864px;
+    margin: auto;
+}
+
+.autosize {
+    margin: auto;
+}
+
+.googlefonts {
+    font-family: 'Lato', 'Roboto', 'Helvetica', sans-serif;
+}
+
+div.wrap {
+    word-wrap: break-word;
+    white-space: pre-line;
+}
