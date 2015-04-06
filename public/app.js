@@ -4,7 +4,7 @@
     /* Set theme */
     app.config(function($mdThemingProvider) {
       $mdThemingProvider.theme('default')
-        .primaryPalette('teal')
+        .primaryPalette('orange')
         .accentPalette('orange');
     });
 
@@ -41,6 +41,23 @@
                     console.log(data);
                 });
         };
+        
+        this.renderMath = function(){
+            window.renderMathInElement(document.body);
+        };
     }]);
+    
+    app.directive('onRepeatFinished', function($timeout){
+        return {
+            restrict: 'A',
+            link: function(scope, element, attr){
+                if (scope.$last) {
+                    $timeout(function(){
+                        scope.$eval(attr.onRepeatFinished);
+                    });
+                }
+            }
+        };
+    });
     
 })();

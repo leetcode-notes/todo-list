@@ -9,6 +9,9 @@
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.css">
         <link rel="stylesheet" href="main.css">
         <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/contrib/auto-render.min.js"></script>
     </head>
     
     <body layout="column" layout-fill class="googlefonts">
@@ -29,7 +32,7 @@
                 </md-whiteframe>
 
                 <md-list ng-hide="listCtrl.loading">
-                    <md-item ng-repeat="item in listCtrl.todos">
+                    <md-item ng-repeat="item in listCtrl.todos" on-repeat-finished="listCtrl.renderMath()">
                         <md-item-content>
                             <div layout="row" layout-fill>
                                 <div ng-bind-html="item.text | linky:'_blank'" class="md-tile-content wrap" flex></div>
