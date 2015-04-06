@@ -25,17 +25,17 @@
                     <form layout="row" layout-sm="column" ng-submit="listCtrl.addTodo()" novalidate>
                         <md-input-container flex-gt-sm="90">
                             <label>Description</label>
-                            <textarea ng-model="listCtrl.newTodoDesc" md-maxlength="140"></textarea>
+                            <textarea ng-model="listCtrl.newTodoDesc" md-maxlength="300"></textarea>
                         </md-input-container>
                         <md-button type="submit" class="md-primary" aria-label="Add" flex>Add</md-button>
                     </form>
                 </md-whiteframe>
 
                 <md-list ng-hide="listCtrl.loading">
-                    <md-item ng-repeat="item in listCtrl.todos" on-repeat-finished="listCtrl.renderMath()">
+                    <md-item ng-repeat="item in listCtrl.todos">
                         <md-item-content>
                             <div layout="row" layout-fill>
-                                <div ng-bind-html="item.text | linky:'_blank'" class="md-tile-content wrap" flex></div>
+                                <div ng-bind-html="item.text | linky:'_blank'" class="md-tile-content wrap" flex katex></div>
                                 <div class="autosize">
                                     <md-button ng-click="listCtrl.deleteTodo(item._id)" aria-label="Delete">
                                         <md-icon md-svg-src="/img/icons/ic_delete_24px.svg"></md-icon>

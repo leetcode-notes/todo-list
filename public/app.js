@@ -5,7 +5,7 @@
     app.config(function($mdThemingProvider) {
       $mdThemingProvider.theme('default')
         .primaryPalette('orange')
-        .accentPalette('orange');
+        .accentPalette('deep-purple');
     });
 
     app.controller('ListController', ['$http', function($http){
@@ -46,6 +46,19 @@
             window.renderMathInElement(document.body);
         };
     }]);
+    
+    app.directive('katex', function($timeout){
+        return {
+            restrict: 'A',
+            link: function(scope, element, attr){
+                $timeout(function(){
+                    $timeout(function(){
+                        window.renderMathInElement(element[0]);
+                    });
+                });
+            }
+        };
+    });
     
     app.directive('onRepeatFinished', function($timeout){
         return {
