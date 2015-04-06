@@ -3,12 +3,11 @@ md-whiteframe {
 }
 
 a {
-    color: #00796b;
+    color: #f57c00;
     text-decoration: none;
 }
 
 a:hover {
-    background-color: #e0f2f1;
     text-decoration: underline;
 }
 
