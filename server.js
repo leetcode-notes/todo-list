@@ -8,6 +8,7 @@ var morgan = require('morgan');             // log requests to the console
 var bodyParser = require('body-parser');    // pull information from HTML POST
 var methodOverride = require('method-override');    // simulate DELETE and PUT
 var compression = require('compression');
+var oneWeek = 604800000;
 
 var ip = '127.0.0.1';
 var port = process.env.PORT || 5000;
@@ -16,7 +17,7 @@ var port = process.env.PORT || 5000;
 mongoose.connect(process.env.MONGODB_DB_URL);
 
 app.use(compression());                         // compress all requests
-app.use(express.static(__dirname + '/public')); // set the static files location
+app.use(express.static(__dirname + '/public', { maxAge: oneWeek })); // set the static files location
 app.use(morgan('dev'));                         // log every request to the console
 app.use(bodyParser.urlencoded({ 'extended': 'true' }));         // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
@@ -31,10 +32,16 @@ var Todo = mongoose.model('Todo', {
 
 // routes and api ========================
 // get all todos
+var cacheTodos = null;
 app.get('/api/todos', function(req, res){
+    if (cacheTodos) {
+        res.json(cacheTodos);
+        return;
+    }
     Todo.find(function(err, todos){
         if (err)
             res.send(err);
+        cacheTodos = todos;
         res.json(todos);    // return all todos in JSON format
     });
 });
@@ -50,6 +57,7 @@ app.post('/api/todos', function(req, res){
         Todo.find(function(err, todos){
             if (err)
                 res.send(err);
+            cacheTodos = todos;
             res.json(todos);    // return all todos in JSON format
         });
     });
@@ -65,6 +73,7 @@ app.delete('/api/todos/:todo_id', function(req, res){
         Todo.find(function(err, todos){
             if (err)
                 res.send(err);
+            cacheTodos = todos;
             res.json(todos);    // return all todos in JSON format
         });
     });
