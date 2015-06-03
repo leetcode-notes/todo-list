@@ -6,46 +6,42 @@
         <meta name="description" content="Gunter's todo list." />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         
-        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.css">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
         <link rel="stylesheet" href="main.css">
-        <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
         <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css">
         <script src="http://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/contrib/auto-render.min.js"></script>
     </head>
     
     <body layout="column" layout-fill class="googlefonts">
-        <md-toolbar layout="row">
+        <md-toolbar layout="row" class="md-whiteframe-z1">
             <h2 class="md-toolbar-tools">Todo List</h2>
         </md-toolbar>
         
         <md-content ng-controller="ListController as listCtrl" class="md-padding">
             <div layout="column" layout-fill class="doc">
-                <md-whiteframe class="md-whiteframe-z1">
+                <md-card>
                     <form layout="row" layout-sm="column" ng-submit="listCtrl.addTodo()" novalidate>
-                        <md-input-container flex-gt-sm="90">
-                            <label>Description</label>
-                            <textarea ng-model="listCtrl.newTodoDesc" md-maxlength="300"></textarea>
-                        </md-input-container>
-                        <md-button type="submit" class="md-primary" aria-label="Add" flex>Add</md-button>
+                        <div class="my-input-container" flex-gt-sm>
+                            <md-input-container>
+                                <label>Description</label>
+                                <textarea ng-model="listCtrl.newTodoDesc" md-maxlength="400"></textarea>
+                            </md-input-container>
+                        </div>
+                        <md-button type="submit" class="md-primary" aria-label="Add">Add</md-button>
                     </form>
-                </md-whiteframe>
+                </md-card>
 
-                <md-list ng-hide="listCtrl.loading">
-                    <md-item ng-repeat="item in listCtrl.todos">
-                        <md-item-content>
-                            <div layout="row" layout-fill>
-                                <div ng-bind-html="item.text | linky:'_blank'" class="md-tile-content wrap" flex katex></div>
-                                <div class="autosize">
-                                    <md-button ng-click="listCtrl.deleteTodo(item._id)" aria-label="Delete">
-                                        <md-icon md-svg-src="/img/icons/ic_delete_24px.svg"></md-icon>
-                                    </md-button>
-                                </div>
-                            </div>
-                        </md-item-content>
-                        <md-divider ng-if="!$last"></md-divider>
-                    </md-item>
-                </md-list>
+                <md-card layout="row" layout-align="center end" ng-hide="listCtrl.loading" ng-repeat="item in listCtrl.todos">
+                    <md-card-content flex>
+                        <div ng-bind-html="item.text | linky:'_blank'" class="wrap" katex></div>
+                    </md-card-content>
+                    <md-button ng-click="listCtrl.deleteTodo(item._id)" class="md-icon-button" aria-label="Delete">
+                        <md-icon md-svg-src="/img/icons/ic_delete_24px.svg"></md-icon>
+                    </md-button>
+                </md-card>
+
                 <div ng-show="listCtrl.loading" layout="row" layout-sm="column" layout-align="space-around">
                     <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                 </div>
@@ -56,7 +52,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-sanitize.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.js"></script>
         <script src="app.js"></script>
     </body>
 </html>

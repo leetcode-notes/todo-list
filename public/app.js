@@ -4,8 +4,12 @@
     /* Set theme */
     app.config(function($mdThemingProvider) {
       $mdThemingProvider.theme('default')
-        .primaryPalette('orange')
-        .accentPalette('deep-purple');
+        .primaryPalette('blue', {
+            'default': '700',
+            'hue-1': '400',
+            'hue-2': '900',
+            'hue-3': 'A100'
+        });
     });
 
     app.controller('ListController', ['$http', function($http){

@@ -1,9 +1,9 @@
-md-whiteframe {
+.my-input-container {
     padding: 8px;
 }
 
 a {
-    color: #f57c00;
+    color: #1976d2;
     text-decoration: none;
 }
 
@@ -16,12 +16,8 @@ a:hover {
     margin: auto;
 }
 
-.autosize {
-    margin: auto;
-}
-
 .googlefonts {
-    font-family: 'Lato', 'Roboto', 'Helvetica', sans-serif;
+    font-family: 'RobotoDraft', 'Roboto', 'Helvetica Neue', sans-serif;
 }
 
 div.wrap {
