@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var morgan = require('morgan');             // log requests to the console
 var bodyParser = require('body-parser');    // pull information from HTML POST
 var methodOverride = require('method-override');    // simulate DELETE and PUT
+var compression = require('compression');
 
 var ip = '127.0.0.1';
 var port = process.env.PORT || 5000;
@@ -14,6 +15,7 @@ var port = process.env.PORT || 5000;
 // configuration =========================
 mongoose.connect(process.env.MONGODB_DB_URL);
 
+app.use(compression());                         // compress all requests
 app.use(express.static(__dirname + '/public')); // set the static files location
 app.use(morgan('dev'));                         // log every request to the console
 app.use(bodyParser.urlencoded({ 'extended': 'true' }));         // parse application/x-www-form-urlencoded
